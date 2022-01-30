@@ -1,27 +1,71 @@
-.board {
+.visibleBoard {
   width: 90vmin;
   height: 90vmin;
-  border: 2px solid red;
+  position: relative;
+  outline: 2px solid red;
+}
+
+.board {
+  width: 90vmin;
+  height: 180vmin;
   display: flex;
   flex-direction: column;
-  padding: 2px;
-  gap: 2px;
+  position: absolute;
+  bottom: 0;
 }
 
 .row {
   flex-grow: 1;
   display: flex;
   flex-direction: row;
-  gap: 2px;
+}
+
+.row[data-hidden="true"] {
+  opacity: 0.25;
 }
 
 .cell {
   flex-grow: 1;
+  padding: 1px;
 }
 
 .cell button {
   width: 100%;
   height: 100%;
+  border: 0;
+  cursor: pointer;
+}
+
+.gem {
+  transition: transform 0.5s, opacity 0.5s;
+  border-radius: 2vmin;
+  background-image: radial-gradient(
+      circle at 32% 86%,
+      rgba(162, 162, 162, 0.05) 0%,
+      rgba(162, 162, 162, 0.05) 50%,
+      rgba(95, 95, 95, 0.05) 50%,
+      rgba(95, 95, 95, 0.05) 100%
+    ),
+    radial-gradient(
+      circle at 62% 1%,
+      rgba(99, 99, 99, 0.05) 0%,
+      rgba(99, 99, 99, 0.05) 50%,
+      rgba(70, 70, 70, 0.05) 50%,
+      rgba(70, 70, 70, 0.05) 100%
+    ),
+    radial-gradient(
+      circle at 16% 3%,
+      rgba(80, 80, 80, 0.05) 0%,
+      rgba(80, 80, 80, 0.05) 50%,
+      rgba(228, 228, 228, 0.05) 50%,
+      rgba(228, 228, 228, 0.05) 100%
+    ),
+    linear-gradient(90deg, rgba(230, 230, 230, 0.15), rgba(230, 230, 230, 0.15));
+}
+
+.gem.taken {
+  opacity: 0;
+  transform: scale(1.5);
 }
 
 .gem-1 {
