@@ -78,6 +78,21 @@ const takeAdjacentGems = (board, rowIndex, cellIndex, takenGems = []) => {
   return takeAdjacentGems(board, rowIndex, cellIndex, takenGems);
 };
 
+const numberOfTakenGemsBelow = (board, takenGems, rowIndex, cellIndex) => {
+  let takenGemsBelow = 0;
+  for (let i = rowIndex + 1; i < board.length; i++) {
+    if (
+      takenGems.find(
+        ([takenGemRow, takenGemCell]) =>
+          takenGemRow === i && takenGemCell === cellIndex
+      )
+    ) {
+      takenGemsBelow++;
+    }
+  }
+  return takenGemsBelow;
+};
+
 const Game = () => {
   const [board, setBoard] = useState(fillBoard());
   const [takenGems, setTakenGems] = useState([]);
@@ -106,11 +121,9 @@ const Game = () => {
         {board.map((row, rowIndex) => (
           <div className="row" key={rowIndex}>
             {row.map((cell, cellIndex) => (
-              <div className="cell" key={cellIndex}>
-                <button
-                  className={`
-                  gem
-                  gem-${cell}
+              <div
+                className={`
+                  cell
                   ${
                     takenGems.find(
                       ([takenRow, takenCell]) =>
@@ -119,6 +132,19 @@ const Game = () => {
                       ? "taken"
                       : ""
                   }
+                  move-down-${numberOfTakenGemsBelow(
+                    board,
+                    takenGems,
+                    rowIndex,
+                    cellIndex
+                  )}`}
+                key={cellIndex}
+              >
+                <button
+                  className={`
+                    gem
+                    gem-${cell}
+
                 `}
                   onClick={() => {
                     takeGems(rowIndex, cellIndex);

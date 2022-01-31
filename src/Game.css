@@ -3,6 +3,7 @@
   height: 90vmin;
   position: relative;
   outline: 2px solid red;
+  overflow: hidden;
 }
 
 .board {
@@ -27,6 +28,8 @@
 .cell {
   flex-grow: 1;
   padding: 1px;
+  transition: transform 0.5s, opacity 0.5s;
+  /* transition-timing-function: linear; */
 }
 
 .cell button {
@@ -37,7 +40,6 @@
 }
 
 .gem {
-  transition: transform 0.5s, opacity 0.5s;
   border-radius: 2vmin;
   background-image: radial-gradient(
       circle at 32% 86%,
@@ -63,9 +65,56 @@
     linear-gradient(90deg, rgba(230, 230, 230, 0.15), rgba(230, 230, 230, 0.15));
 }
 
-.gem.taken {
+.cell.taken {
   opacity: 0;
-  transform: scale(1.5);
+  transform: scale(2);
+  transition-timing-function: ease-out;
+  transition-duration: 0.5s;
+}
+
+.cell.move-down-1:not(.taken) {
+  transition-duration: 0.1s;
+  transform: translateY(100%);
+}
+
+.cell.move-down-2:not(.taken) {
+  transition-duration: 0.2s;
+  transform: translateY(200%);
+}
+
+.cell.move-down-3:not(.taken) {
+  transition-duration: 0.3s;
+  transform: translateY(300%);
+}
+
+.cell.move-down-4:not(.taken) {
+  transition-duration: 0.4s;
+  transform: translateY(400%);
+}
+
+.cell.move-down-5:not(.taken) {
+  transition-duration: 0.5s;
+  transform: translateY(500%);
+}
+
+.cell.move-down-6:not(.taken) {
+  transition-duration: 0.6s;
+  transform: translateY(600%);
+}
+
+.cell.move-down-7:not(.taken) {
+  transition-duration: 0.7s;
+  transform: translateY(700%);
+}
+
+.cell.move-down-8:not(.taken) {
+  transition-duration: 0.8s;
+  transform: translateY(800%);
+}
+
+.cell.move-down-9:not(.taken) {
+  transition-duration: 0.9s;
+  transform: translateY(900%);
 }
 
 .gem-1 {
